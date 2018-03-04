@@ -4,7 +4,7 @@
 name: SparCC - Compute Correlations - v2016-10-17
 tooltip: |
 	compute correlations in compositional data (16S, tax, metagenomics, functions, etc.)
-screenshots:
+screenshots: []
 
 icon: sparcc-green.png
 
