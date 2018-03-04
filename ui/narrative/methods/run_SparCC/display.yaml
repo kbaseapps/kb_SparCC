@@ -1,0 +1,121 @@
+#
+#  define display information
+#
+name: SparCC - Compute Correlations - v2016-10-17
+tooltip: |
+	compute correlations in compositional data (16S, tax, metagenomics, functions, etc.)
+screenshots: []
+
+icon: sparcc-green.png
+
+#
+# define a set of similar methods that might be useful to the user
+#
+suggestions:
+	apps:
+		related:
+			[]
+		next:
+			[]
+	methods:
+		related:
+			[]
+		next:
+			[]
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    input_biom_ref :
+        ui-name : |
+            BIOM abundance <font color=red>*</font>
+        short-hint : |
+            The abundance matrix within which to calculate correlations
+    correlation_type : 
+        ui-name : |
+            Correlation type
+        short-hint : |
+            Select correlation type
+    iterations :
+        ui-name : |
+            Iterations
+        short-hint : |
+            Upper bound for iterations if no convergence
+    p_vals_flag : 
+        ui-name : |
+            Calculate p values?
+        short-hint : |
+            Decide whether to calculate psuedo p values (slow step)
+    bootstraps : 
+        ui-name : |
+            Bootstraps
+        short-hint : |
+            How many bootstraps include in p-value calculation
+    single_avg_abund_viz_flag : 
+        ui-name : |
+            Average abundance?
+        short-hint : |
+            Generate a single plot with average abundance or one for each sample
+    correlation_viz_thresh : 
+        ui-name : |
+            Correlation threshold
+        short-hint : |
+            Limit lines drawn to those >= correlation threshold
+
+#
+# Desc
+#
+description : |
+	<p>This is a Narrative Method for running <a href="http://kaiju.binf.ku.dk/">Kaiju: Fast and sensitive taxonomic classification for metagenomics.</a> 
+	Kaiju is written by Peter Menzel and Anders Krogh at the Bioinfomratics Centre, a part of the <a href="http://www1.bio.ku.dk/binf/" target="centre">Section for Computational and RNA Biology</a> at the <a href="http://www.ku.dk/english" target="ucop">University of Copenhagen</a>.
+	 </p>
+	 <hr>
+	 <p>
+	 References:<br>
+	 Kaiju Homepage: http://kaiju.binf.ku.dk/<br>
+	 Krona Homepage: https://github.com/marbl/Krona/wiki<br>
+	 Kaiju DBs from: http://kaiju.binf.ku.dk/server<br>
+	 Github repo for Kaiju: https://github.com/bioinformatics-centre/kaiju<br>
+	 Github repo for Krona: https://github.com/marbl/Krona<br>
+	 </p>
+	 <hr>
+	 Kaiju paper: Menzel, P. et al. (2016) <a href="http://www.ncbi.nlm.nih.gov/pubmed/27071849">Fast and sensitive taxonomic classification for metagenomics with Kaiju.</a> Nat. Commun. 7:11257.
+	 <br>
+	 Krona paper: Ondov BD, Bergman NH, and Phillippy AM. <a href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">Interactive metagenomic visualization in a Web browser.</a> BMC Bioinformatics. 2011 Sep 30; 12(1):385.
+	 </p>
+	 <hr>
+	 <p>
+	 wrapped for KBase by <a href="mailto:DCChivian@lbl.gov">Dylan Chivian</a>
+	 </p>
+	 <hr>
+	 <h3>Description</h3>
+	 Kaiju offers four reference databases for classification, which are downloaded from the <a href="http://kaiju.binf.ku.dk/server">Kaiju webserver page</a> (last updated 2017-05-16).  The databases are<p>
+	 <ul>
+	 <li> <b>RefSeq Complete Genomes</b>: 25M protein sequences from 7065 complete bacterial and archaeal genomes and 9334 viral genomes from NCBI RefSeq. 
+	 <li> <b>proGenomes</b>: 20M protein sequences from bacterial and archaeal genomes and 9334 viral genomes from NCBI RefSeq.
+	 <li> <b>NCBI BLAST nr</b>: 94M protein sequences from nr: Bacteria, Archaea, and Viruses.
+	 <li> <b>NCBI BLAST nr+euk</b>: 103M protein sequences from nr: Bacteria, Archaea, Viruses, Fungi and microbial eukaryotes.
+	 </ul>
+
+publications :
+    -
+        pmid: 27071849
+        display-text : |
+            'Menzel P, Ng KL, Krogh A. (2016) Fast and sensitive taxonomic classification for metagenomics with Kaiju. Nat Commun. 2016 Apr 13;7:11257. doi: 10.1038/ncomms11257'
+        link: http://www.ncbi.nlm.nih.gov/pubmed/27071849
+    -
+        pmid: 21961884
+        display-text : |
+            'Ondov BD, Bergman NH, and Phillippy AM. (2011) Interactive metagenomic visualization in a Web browser. BMC Bioinformatics. 2011 Sep 30; 12(1):385. doi: 10.1186/1471-2105-12-385'
+        link: http://www.ncbi.nlm.nih.gov/pubmed/21961884
+    -
+    	link: http://kaiju.binf.ku.dk/
+    -
+    	link: http://kaiju.binf.ku.dk/server
+    -
+    	link: https://github.com/bioinformatics-centre/kaiju
+    -
+    	link: https://github.com/marbl/Krona/wiki
+    -
+    	link: https://github.com/marbl/Krona

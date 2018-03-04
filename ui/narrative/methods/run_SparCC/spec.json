@@ -1,0 +1,204 @@
+{
+	"ver": "0.0.1",
+
+	"authors": [
+		"dylan"
+	],
+	"contact": "http://kbase.us/contact-us/",
+	"visible": true,
+	"categories": ["active", "communities" ],
+	"widgets": {
+		"input": null,
+		"output": "no-display"
+	},
+	"parameters": [
+		{
+			"id": "input_biom_ref",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": true,
+			"default_values": [ "" ],
+			"field_type": "text",
+			"text_options": {
+				"valid_ws_types": [ "Communities.Biom" ]
+			}
+		},
+		{
+			"id": "correlation_type",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": [ "SparCC" ],
+		        "field_type": "dropdown",
+		        "dropdown_options": {
+					"options": [
+						{
+							"value": "sparcc",
+							"display": "SparCC",
+							"id": "correlation_type-sparcc",
+							"ui-name": "correlation_type-sparcc"
+						},
+						{
+							"value": "pearson",
+							"display": "Pearson",
+							"id": "correlation_type-pearson",
+							"ui-name": "correlation_type-pearson"
+						},
+						{
+							"value": "spearman",
+							"display": "Spearman",
+							"id": "correlation_type-spearman",
+							"ui-name": "correlation_type-spearman"
+						}
+					]
+				}
+		},
+		{
+			"id": "iterations",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": [ "5" ],
+			"field_type": "text",
+			"text_options": {
+				"validate_as": "int",
+			        "min_int": 1,
+			        "max_int": 100
+			}
+		},
+		{
+			"id": "p_vals_flag",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": ["0"],
+			"field_type": "dropdown",
+				"dropdown_options": {
+					"options": [
+						{
+							"value": "0",
+							"display": "Skip p-value calculation",
+							"id": "p_vals_flag-skip",
+							"ui-name": "p_vals_flag-skip"
+						},
+						{
+							"value": "1",
+							"display": "Perform p-value calculation",
+							"id": "p_vals_flag-perform",
+							"ui-name": "p_vals_flag-perform"
+						}
+					]
+				}
+		},
+		{
+			"id": "bootstraps",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": [ "100" ],
+			"field_type": "text",
+			"text_options": {
+				"validate_as": "int",
+			        "min_int": 1,
+			        "max_int": 100
+			}
+		},
+		{
+			"id": "single_avg_abund_viz_flag",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": ["0"],
+			"field_type": "dropdown",
+				"dropdown_options": {
+					"options": [
+						{
+							"value": "0",
+							"display": "Single average abundance plot",
+							"id": "single_avg_abund_viz_flag-single",
+							"ui-name": "single_avg_abund_viz_flag-single"
+						},
+						{
+							"value": "1",
+							"display": "Separate per-sample abundance plots",
+							"id": "single_avg_abund_viz_flag-separate",
+							"ui-name": "single_avg_abund_viz_flag-separate"
+						}
+					]
+				}
+		},
+		{
+			"id": "correlation_viz_thresh",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": false,
+			"default_values": [ "0.25" ],
+			"field_type": "text",
+			"text_options": {
+				"validate_as": "float",
+			        "min_float": 0.0,
+			        "max_float": 1.0
+			}
+		}
+	],
+
+	"behavior": {
+		"service-mapping": {
+			"url": "",
+			"name": "kb_SparCC",
+			"method": "run_SparCC",
+			"input_mapping": [
+				{
+					"narrative_system_variable": "workspace",
+					"target_property": "workspace_name"
+				},
+				{
+					"input_parameter": "input_biom_ref",
+					"target_property": "input_biom_ref",
+					"target_type_transform": "resolved-ref"
+
+				},
+				{
+					"input_parameter": "correlation_type",
+					"target_property": "correlation_type"
+				},
+				{
+					"input_parameter": "iterations",
+					"target_property": "iterations"
+
+				},
+				{
+					"input_parameter": "p_vals_flag",
+					"target_property": "p_vals_flag"
+				},
+				{
+					"input_parameter": "bootstraps",
+					"target_property": "bootstraps"
+				},
+				{
+					"input_parameter": "single_avg_abund_viz_flag",
+					"target_property": "single_avg_abund_viz_flag"
+				},
+				{
+					"input_parameter": "correlation_viz_thresh",
+					"target_property": "correlation_viz_thresh"
+				}
+			],
+			"output_mapping": [
+				{
+					"service_method_output_path": [0, "report_name"],
+					"target_property": "report_name"
+				},
+				{
+					"service_method_output_path": [0, "report_ref"],
+					"target_property": "report_ref"
+				},
+				{
+					"narrative_system_variable": "workspace",
+					"target_property": "workspace_name"
+				}
+			]
+		}
+	},
+	"job_id_output_field": "docker"
+}

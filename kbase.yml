@@ -2,7 +2,7 @@ module-name:
     kb_SparCC
 
 module-description:
-    A KBase module
+    A KBase module wrapping the SparCC tool for population covariation analysis
 
 service-language:
     python
@@ -12,4 +12,3 @@ module-version:
 
 owners:
     [dylan]
-
