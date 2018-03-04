@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 #BEGIN_HEADER
+import os
+import json
+
+from kb_SparCC.Utils.SparCCUtil import SparCCUtil
 #END_HEADER
 
 
@@ -31,7 +35,7 @@ FastSpar: https://github.com/scwatts/fastspar
     # the latter method is running.
     ######################################### noqa
     VERSION = "0.0.1"
-    GIT_URL = "https://github.com/dcchivian/kb_SparCC"
+    GIT_URL = "https://github.com/kbaseapps/kb_SparCC"
     GIT_COMMIT_HASH = "796f0cd685467d676e10bfca3ac4b99ccceaf96a"
 
     #BEGIN_CLASS_HEADER
@@ -41,6 +45,9 @@ FastSpar: https://github.com/scwatts/fastspar
     # be found
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
+        self.config = config
+        self.config['SDK_CALLBACK_URL'] = os.environ['SDK_CALLBACK_URL']
+        self.config['KB_AUTH_TOKEN'] = os.environ['KB_AUTH_TOKEN']
         #END_CONSTRUCTOR
         pass
 
@@ -71,6 +78,11 @@ FastSpar: https://github.com/scwatts/fastspar
         # ctx is the context object
         # return variables are: returnVal
         #BEGIN run_SparCC
+        print('--->\nRunning kb_SparCC.run_SparCC\nparams:')
+        print(json.dumps(params, indent=1))
+
+        sparccUtil_client = SparCCUtil(self.config, ctx)
+        returnVal = sparccUtil_client.run_SparCC_with_Pvalue(params)
         #END run_SparCC
 
         # At some point might do deeper type checking...
